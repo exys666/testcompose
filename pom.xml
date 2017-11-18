@@ -6,7 +6,7 @@
 
     <groupId>com.testcompose</groupId>
     <artifactId>junit-extension</artifactId>
-    <version>0.0.1</version>
+    <version>0.1.0</version>
 
     <properties>
         <kotlin.version>1.1.60</kotlin.version>
