@@ -5,8 +5,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.testcompose</groupId>
-    <artifactId>testcompose</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <artifactId>junit-extension</artifactId>
+    <version>0.0.1</version>
 
     <properties>
         <kotlin.version>1.1.60</kotlin.version>
@@ -46,6 +46,19 @@
                     <execution>
                         <id>test-compile</id>
                         <goals> <goal>test-compile</goal> </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
                     </execution>
                 </executions>
             </plugin>
