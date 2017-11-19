@@ -11,13 +11,17 @@ object CompositionRegistry {
 
     init {
         Runtime.getRuntime().addShutdownHook(Thread(Runnable {
-            compositions.values.forEach(Composition::stop)
+            compositions.values.stream()
+                    .filter({ !it.external })
+                    .forEach(Composition::stop)
         }))
     }
 
     fun prepare(testClass: Class<*>) {
         findAnnotation(testClass).ifPresent { compose ->
-            val composition = compositions.computeIfAbsent(configFullPath(compose)) { Composition.create(it) }
+            val composition = compositions.computeIfAbsent(configFullPath(compose)) {
+                Composition.attach(it, compose.id).orElseGet({ Composition.create(it) })
+            }
             composition.exportPorts(compose.exportPorts)
             composition.await(compose.waitFor)
         }

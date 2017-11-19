@@ -5,10 +5,11 @@ import com.testcompose.annotation.Port
 import java.util.*
 
 class Composition private constructor(
-        val compose: DockerCompose
+        val compose: DockerCompose,
+        val external: Boolean
 ) {
 
-    constructor(id: String, configPath: String) : this(DockerCompose(configPath, id))
+    constructor(id: String, configPath: String) : this(DockerCompose(configPath, id), false)
 
     companion object {
 
@@ -16,6 +17,20 @@ class Composition private constructor(
             val c = Composition(UUID.randomUUID().toString(), configPath)
             c.start()
             return c
+        }
+
+        fun attach(configPath: String, id: String): Optional<Composition> {
+            val compose = DockerCompose(configPath, id)
+            val lines = compose.ps()
+
+            if (lines.size > 2) {
+                val index = lines[0].indexOf("State")
+                if (lines.stream().skip(2).allMatch({line -> line.substring(index, index + 2) == "Up" })) {
+                    return Optional.of(Composition(compose, true))
+                }
+            }
+
+            return Optional.empty()
         }
     }
 

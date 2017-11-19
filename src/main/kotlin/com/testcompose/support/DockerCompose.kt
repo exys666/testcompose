@@ -17,6 +17,10 @@ class DockerCompose(
         DockerComposeCommand("-f", configPath, "-p", compositionId, "down").waitForComplete()
     }
 
+    fun ps() =
+        DockerComposeCommand("-f", configPath, "-p", compositionId, "ps").waitForComplete()
+
+
     // TODO better name
     fun waitFor(container: String, message: String) {
         DockerComposeCommand("-f", configPath, "-p", compositionId, "logs", "-f").waitForMessage(message)
