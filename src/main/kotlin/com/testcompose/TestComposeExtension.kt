@@ -5,6 +5,9 @@ import org.junit.jupiter.api.extension.BeforeAllCallback
 import org.junit.jupiter.api.extension.ExtensionContext
 import org.junit.jupiter.api.extension.ExtensionContext.*
 
+/**
+ * JUnit5 extension class
+ */
 class TestComposeExtension : BeforeAllCallback {
 
 
