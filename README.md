@@ -13,7 +13,23 @@
 
 ###  Maven dependency
 
-JitPack release, [read more](https://jitpack.io/#exys666/testcompose/0.2.0)
+Maven central, [see](https://search.maven.org/search?q=g:com.testcompose%20AND%20a:junit-extension&core=gav)
+```xml
+<pom>
+    
+    <dependencies>
+        <dependency>
+            <groupId>com.testcompose</groupId>
+            <artifactId>junit-extension</artifactId>
+            <version>0.3.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+</pom>
+```
+
+or JitPack release, [read more](https://jitpack.io/#exys666/testcompose/0.2.0)
 ```xml
 <pom>
 
