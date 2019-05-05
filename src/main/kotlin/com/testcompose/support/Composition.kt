@@ -9,18 +9,21 @@ class Composition private constructor(
         val external: Boolean
 ) {
 
-    constructor(id: String, configPath: String) : this(DockerCompose(configPath, id), false)
+    constructor(id: String,
+                configPath: String,
+                pullArgs: Array<String>,
+                upArgs: Array<String>) : this(DockerCompose(configPath, id, pullArgs, upArgs), false)
 
     companion object {
 
-        fun create(configPath: String): Composition {
-            val c = Composition(UUID.randomUUID().toString(), configPath)
+        fun create(configPath: String, pullArgs: Array<String>, upArgs: Array<String>): Composition {
+            val c = Composition(UUID.randomUUID().toString(), configPath, pullArgs, upArgs)
             c.start()
             return c
         }
 
         fun attach(configPath: String, id: String): Optional<Composition> {
-            val compose = DockerCompose(configPath, id)
+            val compose = DockerCompose(configPath, id, emptyArray(), emptyArray())
             val lines = compose.ps()
 
             if (lines.size > 2) {
