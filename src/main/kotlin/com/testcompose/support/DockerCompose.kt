@@ -2,15 +2,19 @@ package com.testcompose.support
 
 class DockerCompose(
         val configPath: String,
-        val compositionId: String
+        val compositionId: String,
+        val pullArgs: Array<String>,
+        val upArgs: Array<String>
 ) {
 
     fun pull() {
-        DockerComposeCommand("-f", configPath, "-p", compositionId, "pull").waitForComplete()
+        val args = arrayOf("-f", configPath, "-p", compositionId, "pull") + pullArgs
+        DockerComposeCommand(*args).waitForComplete()
     }
 
     fun up() {
-        DockerComposeCommand("-f", configPath, "-p", compositionId, "up", "-d").waitForComplete()
+        val args = arrayOf("-f", configPath, "-p", compositionId, "up", "-d") + upArgs
+        DockerComposeCommand(*args).waitForComplete()
     }
 
     fun down() {
