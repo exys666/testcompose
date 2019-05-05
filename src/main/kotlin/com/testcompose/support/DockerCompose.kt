@@ -40,7 +40,7 @@ class DockerCompose(
                             "3. container '$container' does not expose port '$port'."
             )
         }
-        assignedPort[0]
+        return assignedPort[0]
                 .substring("0.0.0.0:".length)
                 .toInt()
     }

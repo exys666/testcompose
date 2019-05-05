@@ -6,7 +6,7 @@
 
     <groupId>com.testcompose</groupId>
     <artifactId>junit-extension</artifactId>
-    <version>0.3.1</version>
+    <version>0.4.0</version>
 
     <name>Test Compose</name>
     <description>JUnit5 extension for managing docker-compose files during test execution.</description>
@@ -52,7 +52,7 @@
     </pluginRepositories>
 
     <properties>
-        <kotlin.version>1.2.31</kotlin.version>
+        <kotlin.version>1.3.31</kotlin.version>
         <junit.jupiter.version>5.0.2</junit.jupiter.version>
     </properties>
 
@@ -115,7 +115,7 @@
             <plugin>
                 <groupId>org.jetbrains.dokka</groupId>
                 <artifactId>dokka-maven-plugin</artifactId>
-                <version>0.9.15</version>
+                <version>0.9.18</version>
                 <executions>
                     <execution>
                         <phase>package</phase>
