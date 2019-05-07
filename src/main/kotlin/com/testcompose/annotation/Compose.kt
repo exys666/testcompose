@@ -7,6 +7,7 @@ package com.testcompose.annotation
  * @property config path to docker compose config file
  * @property pullArgs additional arguments to use when issuing 'pull' command
  * @property upArgs additional arguments to use when issuing 'up' command
+ * @property composeArgs additional arguments to use for all docker compose commands
  * @property exportPorts list of exposed ports
  * @property waitFor list of log conditions
  */
@@ -17,6 +18,7 @@ annotation class Compose(
         val config: String = "/docker-compose.yml",
         val pullArgs: Array<String> = emptyArray(),
         val upArgs: Array<String> = emptyArray(),
+        val composeArgs: Array<String> = emptyArray(),
         val exportPorts: Array<Port> = emptyArray(),
         val waitFor: Array<Await> = emptyArray()
 )

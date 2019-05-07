@@ -4,25 +4,29 @@ class DockerCompose(
         val configPath: String,
         val compositionId: String,
         val pullArgs: Array<String>,
-        val upArgs: Array<String>
+        val upArgs: Array<String>,
+        val composeArgs: Array<String>
 ) {
 
     fun pull() {
-        val args = arrayOf("-f", configPath, "-p", compositionId, "pull") + pullArgs
+        val args = composeArgs + arrayOf("-f", configPath, "-p", compositionId, "pull") + pullArgs
         DockerComposeCommand(*args).waitForComplete()
     }
 
     fun up() {
-        val args = arrayOf("-f", configPath, "-p", compositionId, "up", "-d") + upArgs
+        val args = composeArgs + arrayOf("-f", configPath, "-p", compositionId, "up", "-d") + upArgs
         DockerComposeCommand(*args).waitForComplete()
     }
 
     fun down() {
-        DockerComposeCommand("-f", configPath, "-p", compositionId, "down").waitForComplete()
+        val args = composeArgs + arrayOf("-f", configPath, "-p", compositionId, "down")
+        DockerComposeCommand(*args).waitForComplete()
     }
 
-    fun ps() =
-            DockerComposeCommand("-f", configPath, "-p", compositionId, "ps").waitForComplete()
+    fun ps() : List<String> {
+        val args = composeArgs + arrayOf("-f", configPath, "-p", compositionId, "ps")
+        return DockerComposeCommand(*args).waitForComplete()
+    }
 
 
     // TODO better name

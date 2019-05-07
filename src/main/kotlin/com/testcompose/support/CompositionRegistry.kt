@@ -21,8 +21,8 @@ object CompositionRegistry {
     fun prepare(testClass: Class<*>) {
         findAnnotation(testClass).ifPresent { compose ->
             val composition = compositions.computeIfAbsent(configFullPath(compose)) {
-                Composition.attach(it, compose.id)
-                        .orElseGet { Composition.create(it, compose.pullArgs, compose.upArgs)}
+                Composition.attach(it, compose.id, compose.composeArgs)
+                        .orElseGet { Composition.create(it, compose.pullArgs, compose.upArgs, compose.composeArgs)}
             }
             composition.exportPorts(compose.exportPorts)
             composition.await(compose.waitFor)
