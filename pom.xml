@@ -6,7 +6,7 @@
 
     <groupId>com.testcompose</groupId>
     <artifactId>junit-extension</artifactId>
-    <version>0.4.0</version>
+    <version>0.5.0</version>
 
     <name>Test Compose</name>
     <description>JUnit5 extension for managing docker-compose files during test execution.</description>
